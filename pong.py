@@ -58,7 +58,7 @@ def start_Game():
         sense.show_message("GAME OVER",0.05)
         x = random.randint(1,5)
         y = random.randint(0,7)
-        start_Game()
+        break
         
       if y == 1: 
         if x == pos_x or x == pos_x + 1 or x == pos_x - 1 or (x == pos_x + 2 and xVelocity == -1) or (x == pos_x - 2 and xVelocity == +1) :
@@ -66,5 +66,5 @@ def start_Game():
           
       x = x + xVelocity
       y = y + yVelocity
-    
-start_Game()
+
+sense.stick.direction_right = start_Game()
