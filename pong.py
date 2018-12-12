@@ -11,6 +11,10 @@ y = random.randint(0,7)
 xVelocity = 1
 yVelocity = 1
 
+def start(event):
+  if event.action == 'pressed':
+    start_Game()
+
 
 def move_up(event):
   global pos_x
@@ -24,6 +28,7 @@ def move_down(event):
   
 sense.stick.direction_down = move_down
 sense.stick.direction_up = move_up
+sense.stick.direction_left = start
 
 def draw_Pad():
   sense.set_pixel(0,pos_x,white)
@@ -40,7 +45,7 @@ def start_Game():
   global yVelocity
   
   while True:
-      time.sleep(.1)
+      time.sleep(.2)
       sense.clear()
       sense.set_pixel(y,x,red)
       draw_Pad()
@@ -67,4 +72,3 @@ def start_Game():
       x = x + xVelocity
       y = y + yVelocity
 
-sense.stick.direction_right = start_Game()
