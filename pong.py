@@ -30,31 +30,35 @@ def draw_Pad():
   sense.set_pixel(0,pos_x +1,white)
   sense.set_pixel(0,pos_x -1,white)
 
-while True:
-  time.sleep(.1)
-  sense.clear()
-  sense.set_pixel(y,x,red)
-  draw_Pad()
-  if x == 0:
-    xVelocity = +1
+def start_Game():
+    while True:
+      time.sleep(.1)
+      sense.clear()
+      sense.set_pixel(y,x,red)
+      draw_Pad()
+      if x == 0:
+        xVelocity = +1
+        
+      if x == 7:
+        xVelocity = -1
+        
+      if y == 7:
+        yVelocity = -1
+       
+      if y == 0:
+        break
+        
+      if y == 1: 
+        if x == pos_x or x == pos_x + 1 or x == pos_x - 1 or (x == pos_x + 2 and xVelocity == -1) or (x == pos_x - 2 and xVelocity == +1) :
+          yVelocity = +1
+          
+      x = x + xVelocity
+      y = y + yVelocity
     
-  if x == 7:
-    xVelocity = -1
-    
-  if y == 7:
-    yVelocity = -1
-   
-  if y == 0:
-    break
-    
-  if y == 1: 
-    if x == pos_x or x == pos_x + 1 or x == pos_x - 1 or (x == pos_x + 2 and xVelocity == -1) or (x == pos_x - 2 and xVelocity == +1) :
-      yVelocity = +1
-      
-  x = x + xVelocity
-  y = y + yVelocity
-    
+start_Game()
 sense.show_message("GAME OVER",0.05)
+start_Game()
+
   
   
 
