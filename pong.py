@@ -46,7 +46,10 @@ def start_Game():
         yVelocity = -1
        
       if y == 0:
-        break
+        sense.clear()
+        sense.show_message("GAME OVER",0.05)
+        time.sleep(3)
+        start_Game()
         
       if y == 1: 
         if x == pos_x or x == pos_x + 1 or x == pos_x - 1 or (x == pos_x + 2 and xVelocity == -1) or (x == pos_x - 2 and xVelocity == +1) :
@@ -56,21 +59,3 @@ def start_Game():
       y = y + yVelocity
     
 start_Game()
-sense.show_message("GAME OVER",0.05)
-start_Game()
-
-  
-  
-
-
-
- 
-
-
-  
-  
-  
-
-
-
-
