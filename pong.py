@@ -31,7 +31,15 @@ def draw_Pad():
   sense.set_pixel(0,pos_x -1,white)
 
 def start_Game():
-    while True:
+  global white
+  global red
+  global pos_x
+  global x
+  global y
+  global xVelocity
+  global yVelocity
+  
+  while True:
       time.sleep(.1)
       sense.clear()
       sense.set_pixel(y,x,red)
@@ -48,7 +56,8 @@ def start_Game():
       if y == 0:
         sense.clear()
         sense.show_message("GAME OVER",0.05)
-        time.sleep(3)
+        x = random.randint(1,5)
+        y = random.randint(0,7)
         start_Game()
         
       if y == 1: 
