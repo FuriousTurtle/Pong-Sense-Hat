@@ -63,6 +63,7 @@ def start_Game():
         sense.show_message("GAME OVER",0.05)
         x = random.randint(1,5)
         y = random.randint(0,7)
+        yVelocity = +1
         break
         
       if y == 1: 
