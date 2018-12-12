@@ -1,37 +1,72 @@
 from sense_hat import SenseHat
-
-import time 
-
 sense = SenseHat()
+import time
+import random
 
-blue = [0,0,255]
-red = [255,0,0]
+white = [255,255,255]
+red = [255, 0, 0]
+pos_x = 4
+x = random.randint(1,5)
+y = random.randint(0,7)
+xVelocity = 1
+yVelocity = 1
 
-x = 6
-y = 4
 
+def move_up(event):
+  global pos_x
+  if event.action == 'pressed' and pos_x>1:
+    pos_x -=1
 
-pxHaut = 3
+def move_down(event):
+  global pos_x
+  if event.action == 'pressed' and pos_x<6:
+    pos_x +=1
+  
+sense.stick.direction_down = move_down
+sense.stick.direction_up = move_up
 
-pxMilieu = 4
+def draw_Pad():
+  sense.set_pixel(0,pos_x,white)
+  sense.set_pixel(0,pos_x +1,white)
+  sense.set_pixel(0,pos_x -1,white)
 
-pxBas = 5
-
-while True :
-  time.sleep(0.5)
+while True:
+  time.sleep(.1)
   sense.clear()
-  x -= 1
-  sense.set_pixel(x,y,red)
-  if sense.stick.direction_up :
-    sense.clear()
-    pxHaut += 1
-    pxMilieu += 1
-    pxBas += 1
-    sense.set_pixel(0,pxHaut,blue)
-    sense.set_pixel(0,pxMilieu,blue)
-    sense.set_pixel(0,pxBas,blue)
-  else:
-    sense.set_pixel(0,pxHaut,blue)
-    sense.set_pixel(0,pxMilieu,blue)
-    sense.set_pixel(0,pxBas,blue)
+  sense.set_pixel(y,x,red)
+  draw_Pad()
+  if x == 0:
+    xVelocity = +1
+    
+  if x == 7:
+    xVelocity = -1
+    
+  if y == 7:
+    yVelocity = -1
+   
+  if y == 0:
+    break
+    
+  if y == 1: 
+    if x == pos_x or x == pos_x + 1 or x == pos_x - 1 or (x == pos_x + 2 and xVelocity == -1) or (x == pos_x - 2 and xVelocity == +1) :
+      yVelocity = +1
+      
+  x = x + xVelocity
+  y = y + yVelocity
+    
+sense.show_message("GAME OVER",0.05)
+  
+  
+
+
+
+ 
+
+
+  
+  
+  
+
+
+
 
